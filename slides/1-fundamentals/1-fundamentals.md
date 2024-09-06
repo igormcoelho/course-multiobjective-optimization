@@ -157,8 +157,15 @@ How is XS represented? How is XE represented? Are all representations valid? Is 
 
 ## Constructive Heuristics
 
-- A constructive heuristic begin with an empty solution and keep adding "components" to it, until it's *complete*
+- A constructive heuristic begin with an *empty solution* and keep adding "components" to it, until it's *complete* (typically *greedy* or *randomized*)
+   * It is *highly problem-specific*! Every problem can have many different...
+   * It may return an *incomplete solution*, acording to some timelimit stop criteria or due to problem impossibility
 
+![Pseudocode of Constructive Heuristic](pseudo-constructive.png)
+
+## Example: Knapsack Problem
+
+Definition of Knapsack Problem and others... (see Marcone slides)
 
 # Practical Exercise
 
