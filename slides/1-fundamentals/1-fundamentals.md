@@ -114,17 +114,6 @@ The requirements for this class are:
 
 ![https://simple.wikipedia.org/wiki/Travelling_salesman_problem](tsp-motivation.png)
 
-## Naming the Spaces
-
-- The $XS$ denotes a *Solution Space*, where $XE$ is an *Evaluation Space* (or *Objective Space*)
-   * The pair $XES=\;<XS,XE>$ denotes the $XESolution$ space
-   * A *SO optimization problem* is defined by the triple $<XS, XE, f>$
-- The space $XE$ can be partioned into $XE=XFeasible \cup XInfeasible$, where $XFeasible \cap XInfeasible = \emptyset$
-- $XS$ denotes all *valid representations of a solution*, that are *structurally correct*
-   * it may include *infeasible* solutions $s$, that are *valid*, but with *infeasible* evaluation $f(s) \in XInfeasible$
-   * it depends on how the problem is modeled, but it's not uncommon to have $XInfeasible \neq \emptyset$
-- The optimal solution $s^*$ is always feasible $f(s^*) \in XFeasible$, unless the problem is *impossible*
-
 ### Quick discussion for the TSP...
 
 How is XS represented? How is XE represented? Are all representations valid? Is $XInfeasible = \emptyset$? What about missing arcs in graph?
