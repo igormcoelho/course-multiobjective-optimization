@@ -142,26 +142,49 @@ Is some form of divison particularly interesting?
 ## MCP Modeling - Step 3/5
 
 - Solution: use the coin of greatest value! It works, because...
-   * If $M = \{ 1, 5, 10, 25, 50, 100\}, then see the proof presented at ["Guloso e Programação Dinâmica (Motivação)"](https://docs.google.com/presentation/d/1GyBjMvbRewHNQyHQvmJJf4Bo3df94kIwpsySyEgwEC4/present) by prof. Fabiano de Oliveira
+   * If $M = \{ 1, 5, 10, 25, 50, 100\}$, then see the proof presented at ["Guloso e Programação Dinâmica (Motivação)"](https://docs.google.com/presentation/d/1GyBjMvbRewHNQyHQvmJJf4Bo3df94kIwpsySyEgwEC4/present) by prof. Fabiano de Oliveira
    * If M is **any**, then this step consists in the Theorem by Cowen, Cowen, Steinberg in *Totally Greedy Coin Sets and Greedy Obstructions*12
 
-## MCP Modeling - Step 3/5 (proof)
+## MCP Modeling - Step 3/5 (proof Part 1/2)
 
-Theorem by Cowen, Cowen and Steinbeing (2008):
+### Theorem by Cowen, Cowen and Steinbeing (2008)
 
-Suppose that $C_1 = \{a_1, a_2, ..., a_k\}$ is a set of coins such that Minimum Change is correct, and let $C_2 = \{a_1, a_2, ... a_k, a_{k+1}\}$ and $x = \lceil \frac{a_{k+1}}{a_k} \rceil$.
+Suppose that $C_k = \{a_1, a_2, ..., a_k\}$ is a set of coins such that Minimum Change is correct, and let $C_{k+1} = \{a_1, a_2, ... a_k, a_{k+1}\}$ and $\beta = \lceil \frac{a_{k+1}}{a_k} \rceil$.
 
-We have that MCP is correct for $C_2$ iff $MCP(x \times a_k) \leq x$ for $C_2$.
+We have that MCP is correct for $C_{k+1}$ iff $MCP(\beta a_k) \leq \beta$ for $C_{k+1}$.
 
-Example:
+### Example 1 (good one)
 
 MCP is trivially correct for $C_1=\{1\}$
 
-$C_2 = \{1,5\}, x = 5$ and $MCP(5) = 1 \leq 5$
+$C_2 = \{1,5\}, \beta = 5$ and $MCP(5 \cdot 1 = 5) = 1 \leq 5$
 
-$C_3=\{1,5,12\}, x=3$ and $MCP(3.5) = 4 > 3$ (wrong!)
+$C_3 = \{1,5, 10\}, \beta = 2$ and $MCP(2 \cdot 5 = 10) = 1 \leq 2$
 
-**Exercise:** Check it for $M = \{1, 5, 10, 25, 50, 100\}$.
+$C_4 = \{1,5, 10, 25\}, \beta = 3$ and $MCP(3 \cdot 10 = 30) = 2 \leq 3$
+
+$C_5 = \{1,5, 10, 25, 50\}, \beta = 2$ and $MCP(2 \cdot 25 = 50) = 1 \leq 2$
+
+$C_6 = \{1,5, 10, 25, 50, 100\}, \beta = 2$ and $MCP(2 \cdot 50 = 100) = 1 \leq 2$
+
+## MCP Modeling - Step 3/5 (proof Part 2/2)
+
+### Theorem by Cowen, Cowen and Steinbeing (2008)
+
+Suppose that $C_k = \{a_1, a_2, ..., a_k\}$ is a set of coins such that Minimum Change is correct, and let $C_{k+1} = \{a_1, a_2, ... a_k, a_{k+1}\}$ and $\beta = \lceil \frac{a_{k+1}}{a_k} \rceil$.
+
+We have that MCP is correct for $C_{k+1}$ iff $MCP(\beta a_k) \leq \beta$ for $C_{k+1}$.
+
+### Example 2 (bad one)
+
+MCP is trivially correct for $C_1=\{1\}$
+
+$C_2 = \{1,5\}, \beta = 5$ and $MCP(5 \cdot 1 = 5) = 1 \leq 5$
+
+$C_3=\{1,5,12\}, \beta=3$ and $MCP(3 \cdot 5 = 15) = 4 > 3$ (wrong!)
+
+- Remember that $MCP(15)$ is run in a greedy manner, wrongly choosing $\{12, 1, 1, 1\}$
+
 
 ## MCP Modeling - Step 4/5 
 
@@ -218,6 +241,7 @@ We have studied constructive heuristics that are purely greedy or purely random.
 
 What does $\alpha=0.8$ mean? And $\alpha=0.2$?
 
+## Pseudo for Greedy Randomized Constructive Heuristic
 
 ![Greedy Randomized Constructive Heuristic](greedy-randomized-constructive.png)
 
