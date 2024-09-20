@@ -90,9 +90,9 @@ The requirements for this class are:
    * given a set $XE$ of values $e$, called *evaluations* (e.g., $\mathbb{R}$ or $\mathbb{Z}$)
    * given a single objective (SO) function $f: XS \rightarrow XE$, that maps each solution $s \in XS$ to a value $f(s)$
    * find the a solution $s^* \in XS$, called *optimal*, such that no other soution $s' \in XS$ is *better* than $s^*$
-- For now, it can be a *maximization* or *minimization* problem, as $XE$ is a *total order*
-   * For *minimization*, we have that $f(s^*) \leq s', \forall s' \in XS$
-   * For *maximization*, we have that $f(s^*) \geq s', \forall s' \in XS$
+- For now, it can be a *maximization* or *minimization* problem, as long as $XE$ is a *total order*
+   * For *minimization*, we have that $f(s^*) \leq f(s'), \forall s' \in XS$
+   * For *maximization*, we have that $f(s^*) \geq f(s'), \forall s' \in XS$
 
 ## Definitions Part II
 
@@ -113,6 +113,8 @@ The requirements for this class are:
 ## Example of TSP
 
 ![https://simple.wikipedia.org/wiki/Travelling_salesman_problem](tsp-motivation.png)
+
+# Neighborhood Exploration
 
 ### Quick discussion for the TSP...
 
