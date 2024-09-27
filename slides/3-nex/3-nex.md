@@ -384,6 +384,20 @@ So finding a "first" solution can be feasible on practice, by employing some "gr
 
 Using CPU-GPU hybrid architecture can help deciding how such "FindFirst" operation can work efficiently, by organizing GPU blocks and shared memory in a smart way.
 
+## Some formulation
+
+Given $s \in XS$, we can formulate this problem as the following *maximization* problem:
+
+$\max \bar{m}^{all}$
+
+$\mathcal{N}^a \subseteq \mathcal{N}^{\star} = 2^\mathcal{N}$
+
+$m^{all} = \bigcirc_{m \in \mathcal{N}^a} m$
+
+Independence:
+
+$\bar{m}^{all} = \sum{m \in \mathcal{N}^a} \bar{m}(s)$
+
 
 ## Exploring the Multi Improvement technique
 
