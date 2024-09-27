@@ -390,14 +390,15 @@ Given $s \in XS$, a neighborhood $\mathcal{N}$ and the *move set* $\mathcal{M}=\
 
 $\max \bar{m}^{a}(s)$
 
-$\mathcal{M}^a \in \mathcal{M}^{\star} = 2^\mathcal{M}$
+$\mathcal{M}^a \in^{P} \mathcal{M}^{\star} = 2^\mathcal{M}$
 
 $m^{a} = \bigcirc_{m \in \mathcal{M}^a} m$
 
-Independence:
+Move Independence:
 
 $\bar{m}^{a}(s) = \sum_{m \in \mathcal{M}^a} \bar{m}(s)$
 
+Note that operator $\in^{P}$ takes a set of the powerset and also performs a permutation, transforming the selected set into a sequence.
 
 ## Exploring the Multi Improvement technique
 
