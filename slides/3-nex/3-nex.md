@@ -377,26 +377,26 @@ In fact, two subgroups independently proposed the same technique (see Souza 2010
 ## MultiImprovement: the Idea
 
 
-Given a neighborhood $\mathcal{N}$, the *Multi Improvement* (MI) heuristic is an implementation of the primitive \texttt{FindFirst} or \texttt{FindBest} over compound neighborhood $\mathcal{N}^{\star}$.
+Given a solution $s \in XS$, a neighborhood $\mathcal{N}$ and the *move set* $\mathcal{M}=\{m_1, m_2, ...\}$ such that $\mathcal{N}=\{m_1(s), m_2(s), ...\}$, the *Multi Improvement* (MI) heuristic is an implementation of the primitive \texttt{FindFirst} or \texttt{FindBest} over compound neighborhood $\mathcal{M}^{\star}$.
 
-The compound neighborhood $\mathcal{N}^{\star} = 2^\mathcal{N}$ can be seen as a set of all move compositions for $\mathcal{N}$, but finding a "best" compound move can only be done exactly (and it's even NP-hard for some neighborhoods!).
+The compound neighborhood $\mathcal{M}^{\star} = 2^\mathcal{M}$ can be seen as a set of all move compositions for $\mathcal{M}$, but finding a "best" compound move can only be done exactly (and it's even NP-hard for some neighborhoods!).
 So finding a "first" solution can be feasible on practice, by employing some "greedy" strategy.
 
 Using CPU-GPU hybrid architecture can help deciding how such "FindFirst" operation can work efficiently, by organizing GPU blocks and shared memory in a smart way.
 
 ## Some formulation
 
-Given $s \in XS$, we can formulate this problem as the following *maximization* problem:
+Given $s \in XS$, a neighborhood $\mathcal{N}$ and the *move set* $\mathcal{M}=\{m_1, m_2, ...\}$ such that $\mathcal{N}=\{m_1(s), m_2(s), ...\}$, we can formulate this problem as the following *maximization* problem:
 
-$\max \bar{m}^{all}$
+$\max \bar{m}^{a}(s)$
 
-$\mathcal{N}^a \subseteq \mathcal{N}^{\star} = 2^\mathcal{N}$
+$\mathcal{M}^a \in \mathcal{M}^{\star} = 2^\mathcal{M}$
 
-$m^{all} = \bigcirc_{m \in \mathcal{N}^a} m$
+$m^{a} = \bigcirc_{m \in \mathcal{M}^a} m$
 
 Independence:
 
-$\bar{m}^{all} = \sum{m \in \mathcal{N}^a} \bar{m}(s)$
+$\bar{m}^{a}(s) = \sum_{m \in \mathcal{M}^a} \bar{m}(s)$
 
 
 ## Exploring the Multi Improvement technique
