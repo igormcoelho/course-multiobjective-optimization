@@ -10,9 +10,9 @@ Complete list of modules in repository:
 
 Materials in PDF-HTML:
 
-1. [Fundamentals](slides/1-fundamentals/1-fundamentals.md): [PDF](slides/1-fundamentals/1-fundamentals.pdf) [Online](https://igormcoelho.github.io/curso-seguranca-informacao/slides/1-fundamentals/index.html)
-1. [Greedy](slides/2-greedy/2-greedy.md): [PDF](slides/2-greedy/2-greedy.pdf) [Online](https://igormcoelho.github.io/curso-seguranca-informacao/slides/2-greedy/index.html)
-1. [Neighborhood Exploration](slides/3-nex/3-nex.md): [PDF](slides/3-nex/3-nex.pdf) [Online](https://igormcoelho.github.io/curso-seguranca-informacao/slides/3-nex/index.html)
+1. [Fundamentals](slides/1-fundamentals/1-fundamentals.md): [PDF](slides/1-fundamentals/1-fundamentals.pdf) [Online](https://igormcoelho.github.io/course-multiobjective-optimization/slides/1-fundamentals/index.html)
+1. [Greedy](slides/2-greedy/2-greedy.md): [PDF](slides/2-greedy/2-greedy.pdf) [Online](https://igormcoelho.github.io/course-multiobjective-optimization/slides/2-greedy/index.html)
+1. [Neighborhood Exploration](slides/3-nex/3-nex.md): [PDF](slides/3-nex/3-nex.pdf) [Online](https://igormcoelho.github.io/course-multiobjective-optimization/slides/3-nex/index.html)
 
 ## Content (in Portuguese)
 
