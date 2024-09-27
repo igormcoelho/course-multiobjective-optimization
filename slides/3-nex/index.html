@@ -1025,6 +1025,24 @@ Souza 2010 and Anand 2010)</p>
 <h1>Advanced Topic: Multi Improvement</h1>
 
 </section>
+<section id="multiimprovement-the-idea" class="slide level2">
+<h2>MultiImprovement: the Idea</h2>
+<p>Given a neighborhood
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">N</mi></mrow><annotation encoding="application/x-tex">\mathcal{N}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.14736em;">N</span></span></span></span>,
+the <em>Multi Improvement</em> (MI) heuristic is an implementation of
+the primitive or over compound neighborhood
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi mathvariant="script">N</mi><mo lspace="0em" rspace="0em">⋆</mo></msup></mrow><annotation encoding="application/x-tex">\mathcal{N}^{\star}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6887em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.14736em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">⋆</span></span></span></span></span></span></span></span></span></span></span></span>.</p>
+<p>The compound neighborhood
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi mathvariant="script">N</mi><mo lspace="0em" rspace="0em">⋆</mo></msup><mo>=</mo><msup><mn>2</mn><mi mathvariant="script">N</mi></msup></mrow><annotation encoding="application/x-tex">\mathcal{N}^{\star} = 2^\mathcal{N}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6887em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.14736em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">⋆</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathcal mtight" style="margin-right:0.14736em;">N</span></span></span></span></span></span></span></span></span></span></span>
+can be seen as a set of all move compositions for
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">N</mi></mrow><annotation encoding="application/x-tex">\mathcal{N}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.14736em;">N</span></span></span></span>,
+but finding a “best” compound move can only be done exactly (and it’s
+even NP-hard for some neighborhoods!). So finding a “first” solution can
+be feasible on practice, by employing some “greedy” strategy.</p>
+<p>Using CPU-GPU hybrid architecture can help deciding how such
+“FindFirst” operation can work efficiently, by organizing GPU blocks and
+shared memory in a smart way.</p>
+</section>
 <section id="exploring-the-multi-improvement-technique" class="slide level2">
 <h2>Exploring the Multi Improvement technique</h2>
 <p>Please read recent articles from our research group!</p>

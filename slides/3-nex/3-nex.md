@@ -374,9 +374,20 @@ In fact, two subgroups independently proposed the same technique (see Souza 2010
 
 # Advanced Topic: Multi Improvement
 
+## MultiImprovement: the Idea
+
+
+Given a neighborhood $\mathcal{N}$, the *Multi Improvement* (MI) heuristic is an implementation of the primitive \texttt{FindFirst} or \texttt{FindBest} over compound neighborhood $\mathcal{N}^{\star}$.
+
+The compound neighborhood $\mathcal{N}^{\star} = 2^\mathcal{N}$ can be seen as a set of all move compositions for $\mathcal{N}$, but finding a "best" compound move can only be done exactly (and it's even NP-hard for some neighborhoods!).
+So finding a "first" solution can be feasible on practice, by employing some "greedy" strategy.
+
+Using CPU-GPU hybrid architecture can help deciding how such "FindFirst" operation can work efficiently, by organizing GPU blocks and shared memory in a smart way.
+
 ## Exploring the Multi Improvement technique
 
 Please read recent articles from our research group!
+
 
 # Practical Exercise
 
