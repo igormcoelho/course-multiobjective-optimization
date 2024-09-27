@@ -109,22 +109,7 @@ What is a move? How much does it cost?
 ![https://simple.wikipedia.org/wiki/Travelling_salesman_problem](tsp-motivation.png){width=50%}
 
 
-# Heuristics for Neighborhood Exploration
-
-## Heuristics for Neighborhood Exploration and Local Optima
-
-Given a neighborhood $\mathcal{N}$ and a solution $s$, we can explore it, in order to improve solution $s$ by finding a better *neighbor* $s'$
-
-Some heuristics for neighborhood exploration are classic, mainly three: *random selection* (RS); *first improvement* (FI); and *best improvement* (BI). We have also proposed a *multi improvement* (MI) strategy that will be studied later.
-
-These are also called *refinement heuristics* and are the foundations for several *local search* (LS) algorithms.
-
-Differently from a *global search* (GS) algorithm, that tries to find an *optimal solution*, a *local search* tries to find a *locally optimal solution* regarding some specific neighborhood $\mathcal{N}$.
-
-- So, recalling the basic definitions with $XE$ as a *total order*, we define *local optima* $s^* \in XS$, given neighborhood $\mathcal{N}$ and a solution $s \in XS$:
-   * For *minimization*, we have that $f(s^*) \leq f(s'), \forall s' \in \mathcal{N}(s)$
-   * For *maximization*, we have that $f(s^*) \geq f(s'), \forall s' \in \mathcal{N}(s)$
-
+# Neighborhood Exploration Primitives
 
 ## Neighborhood Exploration: Basic Primitives
 
@@ -218,6 +203,23 @@ Although not commonly used, one can define a \texttt{FindNext} primitive:
    * assuming *minimization*, if such $s_i \in \mathcal{N}(s)$ exists, then $i$ is the *smallest value* such that $f(s_i) < f(s)$ and $i>j$
 
 # Local Search and Refinement Heuristics
+
+
+## Heuristics for Neighborhood Exploration and Local Optima
+
+Given a neighborhood $\mathcal{N}$ and a solution $s$, we can explore it, in order to improve solution $s$ by finding a better *neighbor* $s'$
+
+Some heuristics for neighborhood exploration are classic, mainly three: *random selection* (RS); *first improvement* (FI); and *best improvement* (BI). We have also proposed a *multi improvement* (MI) strategy that will be studied later.
+
+These are also called *refinement heuristics* and are the foundations for several *local search* (LS) algorithms.
+
+Differently from a *global search* (GS) algorithm, that tries to find an *optimal solution*, a *local search* tries to find a *locally optimal solution* regarding some specific neighborhood $\mathcal{N}$.
+
+- So, recalling the basic definitions with $XE$ as a *total order*, we define *local optima* $s^* \in XS$, given neighborhood $\mathcal{N}$ and a solution $s \in XS$:
+   * For *minimization*, we have that $f(s^*) \leq f(s'), \forall s' \in \mathcal{N}(s)$
+   * For *maximization*, we have that $f(s^*) \geq f(s'), \forall s' \in \mathcal{N}(s)$
+
+
 
 ## Some Refinement Heuristics and Local Search
 
