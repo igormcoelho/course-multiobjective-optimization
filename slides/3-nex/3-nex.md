@@ -384,6 +384,7 @@ So finding a "first" solution can be feasible on practice, by employing some "gr
 
 Using CPU-GPU hybrid architecture can help deciding how such "FindFirst" operation can work efficiently, by organizing GPU blocks and shared memory in a smart way.
 
+
 ## Exploring the Multi Improvement technique
 
 Please read recent articles from our research group!
