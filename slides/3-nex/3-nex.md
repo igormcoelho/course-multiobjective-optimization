@@ -361,7 +361,7 @@ In fact, two subgroups independently proposed the same technique (see Souza 2010
 Given a solution $s \in XS$, a neighborhood $\mathcal{N}$ and its associated *move set* $\mathcal{M}$, the *Multi Improvement* (MI) heuristic is an implementation of the primitive `FindFirst` or `FindBest` over a compound neighborhood $\mathcal{N}^{\circ}$.
 
 The compound neighborhood $\mathcal{N}^{\circ}$ is associated to a compound move set $\mathcal{M}^{\circ} = \{m^\circ | m^\circ = \bigcirc_{ m \in \mathcal{X} }  m, \forall \mathcal{X} \in^P \mathcal{M}^{\star} \}$ that be seen as a set of *all move compositions* for $\mathcal{M}^{\star}$, which is *a subset of the powerset* $2^\mathcal{M}$ only containing *independent moves* for $s$.
-Note that operator $\in^{P}$ takes a set of the powerset and also performs a permutation, transforming the selected set into a sequence.
+Note that operator $\in^P$ takes a set of the powerset and also performs a permutation, transforming the selected set into a sequence.
 
 Finding a "best" compound move can only be done exactly (and it's even NP-hard for some neighborhoods!).
 So finding a "first" solution can be feasible on practice, by employing some "greedy" strategy.
@@ -373,7 +373,7 @@ Given $s \in XS$, a neighborhood $\mathcal{N}$ and its *move set* $\mathcal{M}$,
 
 $\max \bar{m}^\circ(s)$
 
-$\mathcal{X} \in^{P} \mathcal{M}^{\star} \subseteq 2^\mathcal{M}$
+$\mathcal{X} \in^P \mathcal{M}^{\star} \subseteq 2^\mathcal{M}$
 
 $m^\circ = \bigcirc_{m \in \mathcal{X}} m$
 
