@@ -386,6 +386,13 @@ $\bar{m}^\circ(s) = \sum_{m \in \mathcal{X}} \bar{m}(s)$
 
 Please read recent articles from our research group!
 
+- A benchmark on multi improvement neighborhood search strategies in CPU/GPU systems (2016)
+- Exploring parallel multi-GPU local search strategies in a metaheuristic framework (2018)
+- A DVND local search implemented on a dataflow architecture for the minimum latency problem (2018)
+- Multi Improvement: uma Solução Alternativa para o Problema de Roteamento de Veículos (2019)
+- A multi-improvement local search using dataflow and GPU to solve the minimum latency problem (2020)
+- Finding the maximum multi improvement on neighborhood exploration (2022)
+
 
 # Practical Exercise
 
