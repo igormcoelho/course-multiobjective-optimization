@@ -66,7 +66,7 @@ We recall an instance of the Knapsack Problem with 5 items and consider solution
 
 \newcommand{\Bigcirc}{\mathop{\bigcirc}}
 
-- We consider the following move definition $M^{(I)} = \{m_1, m_2, ..., m_i\} =$ \texttt{\{~change the value of the bit $i$\}}
+- We consider the following move definition $M^{(I)} = \{m_1, m_2, ..., m_i\} =$ `{change the value of the bit i}`
 - We can find moves $m_1,m_4,m_5 \in M^{(I)}$ such that $s_2 = ((s_1 \oplus m_1) \oplus m_4) \oplus m_5$
    * this changes the values of the first, fourth and fifth bits
    * the following intermediate solutions are visited in this path: $s_1 = (01001) \rightarrow (11001) \rightarrow (11011) \rightarrow (11010) = s_2$
@@ -90,16 +90,16 @@ Given a move $m$ and function $f$, we can compute the *move cost*  $\bar{m}^f$ (
 
 ## Moves: Basic Primitives
 
-Given a move $m$, a solution $s \in XS$ and its evaluation $e=f(s) \in XE$, we define three basic move primitives: \texttt{CanApply},  \texttt{Apply} and \texttt{Cost}.
+Given a move $m$, a solution $s \in XS$ and its evaluation $e=f(s) \in XE$, we define three basic move primitives: `CanApply`,  `Apply` and `Cost`.
 
-- the \texttt{CanApply} returns *true* only if $m(s) \in XS$, i.e., if the generated neighbor is a *valid solution* in $XS$ space
+- the `CanApply` returns *true* only if $m(s) \in XS$, i.e., if the generated neighbor is a *valid solution* in $XS$ space
    * this can be useful when moves are clearly defined, such as changing a bit $i$ in a knapsack problem, but not all moves lead to valid solutions, for example, if knapsack capacity would be exceeded after move and that is not allowed in $XS$
-- the \texttt{Apply} primitive returns pair $<m(s), m'>$, where $m'$ is an *undo move*, such that, $s=m'(m(s))$
-   * only defined if \texttt{CanApply} is *true*
-- the \texttt{Cost} primitive returns evaluation difference value $e_{diff} = f(m(s)) - f(s)$
-   * only defined if \texttt{CanApply} is *true*
+- the `Apply` primitive returns pair $<m(s), m'>$, where $m'$ is an *undo move*, such that, $s=m'(m(s))$
+   * only defined if `CanApply` is *true*
+- the `Cost` primitive returns evaluation difference value $e_{diff} = f(m(s)) - f(s)$
+   * only defined if `CanApply` is *true*
 
-A fourth non-basic primitive typically used is the \texttt{ApplyUpdate}, that returns both the *solution neighbor* and its *evaluation* in a pair $<m(s), f(m(s))>$.
+A fourth non-basic primitive typically used is the `ApplyUpdate`, that returns both the *solution neighbor* and its *evaluation* in a pair $\left<m(s), f(m(s))\right>$.
 
 ## Example for the Traveling Salesman Problem (euclidean)
 
@@ -113,39 +113,39 @@ What is a move? How much does it cost?
 
 ## Neighborhood Exploration: Basic Primitives
 
-Given a neighborhood $\mathcal{N}$ and solution $s \in XS$, we define two basic neighborhood exploration primitives: \texttt{RandomMove} and \texttt{AllMoves}.
+Given a neighborhood $\mathcal{N}$ and solution $s \in XS$, we define two basic neighborhood exploration primitives: `RandomMove` and `AllMoves`.
 
-- the \texttt{RandomMove} returns a *random move* from neighborhood $\mathcal{N}$
-- the \texttt{AllMoves} returns sequence $(m_1, m_2, ...)$ from neighborhood $\mathcal{N}$ 
+- the `RandomMove` returns a *random move* from neighborhood $\mathcal{N}$
+- the `AllMoves` returns sequence $(m_1, m_2, ...)$ from neighborhood $\mathcal{N}$ 
 
-Typically, two complementary primitives are built on top of \texttt{AllMoves}: \texttt{FirstMove} and \texttt{NextMove}.
+Typically, two complementary primitives are built on top of `AllMoves`: `FirstMove` and `NextMove`.
 
-- \texttt{FirstMove} returns $m_1$, where $m_1$ is the first move from \texttt{AllMoves}
-- \texttt{NextMove} returns $m_{i+1}$, where $m_i$ is a move from \texttt{AllMoves}
+- `FirstMove` returns $m_1$, where $m_1$ is the first move from `AllMoves`
+- `NextMove` returns $m_{i+1}$, where $m_i$ is a move from `AllMoves`
 
 
 ## Neighborhood Exploration: Find Primitives
 
-Given a neighborhood $\mathcal{N}$ and solution $s \in XS$, we define three neighborhood exploration primitives: \texttt{FindAny},  \texttt{FindFirst} and \texttt{FindBest}.
+Given a neighborhood $\mathcal{N}$ and solution $s \in XS$, we define three neighborhood exploration primitives: `FindAny`,  `FindFirst` and `FindBest`.
 
-- the \texttt{FindAny} tries to find *any* move $m'$ with $s'=m'(s) \in \mathcal{N}(s)$ that *improves* $s$
+- the `FindAny` tries to find *any* move $m'$ with $s'=m'(s) \in \mathcal{N}(s)$ that *improves* $s$
    * we assume a more restricted neighborhood $\mathcal{N}_{\leq \kappa} \subseteq \mathcal{N}$, where $|\mathcal{N}_{\leq \kappa}| \leq k$
    * assuming *minimization*, if such $s' \in \mathcal{N}_{\leq \kappa}(s)$ exists, then $f(s') < f(s)$
-- the \texttt{FindFirst} tries to find *the first* move $m_i$ with $s_i=m_i(s) \in \mathcal{N}(s) = \{s_1, ..., s_i, ...\}$ that *improves* current solution $s$
+- the `FindFirst` tries to find *the first* move $m_i$ with $s_i=m_i(s) \in \mathcal{N}(s) = \{s_1, ..., s_i, ...\}$ that *improves* current solution $s$
    * assuming *minimization*, if such $s_i \in \mathcal{N}(s)$ exists, then $i$ is the *smallest value* such that $f(s_i) < f(s)$
-- the \texttt{FindBest} tries to find *the best* move $m^*$ with $s^* = m^*(s) \in \mathcal{N}(s)$ that *improves* current solution $s$
+- the `FindBest` tries to find *the best* move $m^*$ with $s^* = m^*(s) \in \mathcal{N}(s)$ that *improves* current solution $s$
    * assuming *minimization*, if such $s^* \in \mathcal{N}(s)$ exists, then $f(s^*) < f(s)$ and $f(s^*) \leq f(s'),\; \forall s' \in \mathcal{N}(s)$
 
 ## Pseudocode for Find Primitives: FindAny
 
-The \texttt{FindAny} considers, without loss of generality, a minimization function $f$, a neighborhood $\mathcal{N}$, a value $\kappa_{max}$, a pseudorandom function $\xi(.)$, stop criteria $stop(.)$ and current solution $s$. 
+The `FindAny` considers, without loss of generality, a minimization function $f$, a neighborhood $\mathcal{N}$, a value $\kappa_{max}$, a pseudorandom function $\xi(.)$, stop criteria $stop(.)$ and current solution $s$. 
 It can be implemented in the following way:
 
 \begin{algorithmic}
 \Procedure{FindAny}{$f(.)$, $\mathcal{N}(.)$, $\kappa_{max}$, $\xi(.)$, $stop(.)$, $s$}
    \State $k \gets 0$
    \While{$k < \kappa_{max}$ \textbf{and} \textbf{not} $stop(time(), f(s))$}
-         \State $m \gets $ \texttt{RandomMove}$(\mathcal{N}, s, \xi)$
+         \State $m \gets RandomMove(\mathcal{N}, s, \xi)$
          \If{$\bar{m}^f(s) < 0$}
             \State \textbf{return} $\{m\}$
          \Else
@@ -158,17 +158,17 @@ It can be implemented in the following way:
 
 ## Pseudocode for Find Primitives: FindFirst
 
-The \texttt{FindFirst} considers, without loss of generality, a minimization function $f$, a neighborhood $\mathcal{N}$, stop criteria $stop(.)$ and current solution $s$. 
+The `FindFirst` considers, without loss of generality, a minimization function $f$, a neighborhood $\mathcal{N}$, stop criteria $stop(.)$ and current solution $s$. 
 It can be implemented in the following way:
 
 \begin{algorithmic}
 \Procedure{FindFirst}{$f(.)$, $\mathcal{N}(.)$, $stop(.)$, $s$}
-   \State $m \gets $ \texttt{FirstMove}$(\mathcal{N}, s)$
+   \State $m \gets FirstMove(\mathcal{N}, s)$
    \While{$\exists m$ \textbf{and} \textbf{not} $stop(time(), f(s))$}
          \If{$\bar{m}^f(s) < 0$}
             \State \textbf{return} $\{m\}$
          \Else
-            \State $m \gets $ \texttt{NextMove}$(\mathcal{N}, s, m)$
+            \State $m \gets NextMove(\mathcal{N}, s, m)$
          \EndIf
    \EndWhile
    \State \textbf{return} $\{\}$
@@ -177,19 +177,19 @@ It can be implemented in the following way:
 
 ## Pseudocode for Find Primitives: FindBest
 
-The \texttt{FindBest} considers, without loss of generality, a minimization function $f$, a neighborhood $\mathcal{N}$, stop criteria $stop(.)$ and current solution $s$. 
+The `FindBest` considers, without loss of generality, a minimization function $f$, a neighborhood $\mathcal{N}$, stop criteria $stop(.)$ and current solution $s$. 
 It can be implemented in the following way:
 
 \begin{algorithmic}
 \Procedure{FindBest}{$f(.)$, $\mathcal{N}(.)$, $stop(.)$, $s$}
-   \State $m \gets $ \texttt{FirstMove}$(\mathcal{N}, s)$
+   \State $m \gets FirstMove(\mathcal{N}, s)$
    \State \textbf{if} $\not\exists m$ \textbf{then} \textbf{return} $\{\}$
    \State $\left<e^*, m^*\right> \gets \left<\bar{m}^f(s), m\right>$
    \While{$\exists m$ \textbf{and} \textbf{not} $stop(time(), f(s))$}
          \If{$\bar{m}^f(s) < e^*$}
             \State $\left<e^*, m^*\right> \gets \left<\bar{m}^f(s), m\right>$
          \EndIf
-         \State $m \gets $ \texttt{NextMove}$(\mathcal{N}, s, m)$
+         \State $m \gets NextMove(\mathcal{N}, s, m)$
    \EndWhile
    \State \textbf{if} $e^* < 0$ \textbf{then} \textbf{return} $\{m^*\}$ \textbf{else} \textbf{return} $\{\}$
 \EndProcedure
@@ -197,9 +197,9 @@ It can be implemented in the following way:
 
 ## Neighborhood Exploration: FindNext Primitive (extra)
 
-Although not commonly used, one can define a \texttt{FindNext} primitive:
+Although not commonly used, one can define a `FindNext` primitive:
 
-- the \texttt{FindNext} tries to find *the next* $s_i \in \mathcal{N}(s) = \{s_j, ..., s_i, ...\}$ that *improves* current solution $s$
+- the `FindNext` tries to find *the next* $s_i \in \mathcal{N}(s) = \{s_j, ..., s_i, ...\}$ that *improves* current solution $s$
    * assuming *minimization*, if such $s_i \in \mathcal{N}(s)$ exists, then $i$ is the *smallest value* such that $f(s_i) < f(s)$ and $i>j$
 
 # Local Search and Refinement Heuristics
@@ -232,14 +232,14 @@ We begin with classic refinement heuristics: *Random Selection*, *First Improvem
 
 ## Refinement Heuristic: Random Selection
 
-Given a neighborhood $\mathcal{N}$ and a parameter $\kappa_{max}$, the *Random Selection* (RS) heuristic is an implementation of the primitive \texttt{FindAny}:
+Given a neighborhood $\mathcal{N}$ and a parameter $\kappa_{max}$, the *Random Selection* (RS) heuristic is an implementation of the primitive `FindAny`:
 
 - RS tries to find *any* solution $s' \in \mathcal{N}(s)$ that *improves* current solution $s \in XS$
 - RS is limited to $k_{max}$ tries
 
 \begin{algorithmic}
 \Procedure{RandomSelection}{$f(.)$, $\mathcal{N}(.)$, $\kappa_{max}$, $\xi(.)$, $stop(.)$, $s$}
-   \State $m \gets $ \texttt{FindAny}$(f, \mathcal{N}, \kappa_{max}, \xi(.), stop, s)$
+   \State $m \gets FindAny(f, \mathcal{N}, \kappa_{max}, \xi(.), stop, s)$
    \If{$\exists m$}
       \State \textbf{return} $\{m(s)\}$
    \Else
@@ -250,13 +250,13 @@ Given a neighborhood $\mathcal{N}$ and a parameter $\kappa_{max}$, the *Random S
 
 ## Refinement Heuristic: First Improvement
 
-Given a neighborhood $\mathcal{N}$, the *First Improvement* (FI) heuristic is an implementation of the primitive \texttt{FindFirst}:
+Given a neighborhood $\mathcal{N}$, the *First Improvement* (FI) heuristic is an implementation of the primitive `FindFirst`:
 
 - FI tries to find *the first* solution $s' \in \mathcal{N}(s)$ that *improves* current solution $s \in XS$
 
 \begin{algorithmic}
 \Procedure{FirstImprovement}{$f(.)$, $\mathcal{N}(.)$, $stop(.)$, $s$}
-   \State $m \gets $ \texttt{FindFirst}$(f, \mathcal{N}, stop, s)$
+   \State $m \gets FindFirst(f, \mathcal{N}, stop, s)$
    \If{$\exists m$}
       \State \textbf{return} $\{m(s)\}$
    \Else
@@ -267,13 +267,13 @@ Given a neighborhood $\mathcal{N}$, the *First Improvement* (FI) heuristic is an
 
 ## Refinement Heuristic: Best Improvement
 
-Given a neighborhood $\mathcal{N}$, the *Best Improvement* (BI) heuristic is an implementation of the primitive \texttt{FindBest}:
+Given a neighborhood $\mathcal{N}$, the *Best Improvement* (BI) heuristic is an implementation of the primitive `FindBest`:
 
 - FI tries to find *the best* solution $s' \in \mathcal{N}(s)$ that *improves* current solution $s \in XS$
 
 \begin{algorithmic}
 \Procedure{BestImprovement}{$f(.)$, $\mathcal{N}(.)$, $stop(.)$, $s$}
-   \State $m \gets $ \texttt{FindBest}$(f, \mathcal{N}, stop, s)$
+   \State $m \gets FindBest(f, \mathcal{N}, stop, s)$
    \If{$\exists m$}
       \State \textbf{return} $\{m(s)\}$
    \Else
@@ -321,7 +321,7 @@ Given a neighborhood $\mathcal{N}$, a parameter $\kappa_{max}$ and a solution $s
 \Procedure{RandomDescentMethod}{$f(.)$, $\mathcal{N}(.)$, $\kappa_{max}$, $\xi$, $stop(.)$, $s$}
    \State $k gets 0$
    \While{$k < \kappa_{max}$ \textbf{and} \textbf{not} $stop(time(), f(s))$}
-      \State $m \gets $ \texttt{RandomMove}$(\mathcal{N}, s, \xi)$
+      \State $m \gets RandomMove(\mathcal{N}, s, \xi)$
       \If{$\exists m$ \textbf{and} $\bar{m}^f(s) < 0$}   
          \State $s \gets m(s)$
          \State $k \gets 0$
@@ -377,7 +377,7 @@ In fact, two subgroups independently proposed the same technique (see Souza 2010
 ## MultiImprovement: the Idea
 
 
-Given a solution $s \in XS$, a neighborhood $\mathcal{N}$ and its associated *move set* $\mathcal{M}=\{m_1, m_2, m_3, ...\}$ such that $\mathcal{N}=\{m_1(s), m_2(s), m_3(s), ...\}$, the *Multi Improvement* (MI) heuristic is an implementation of the primitive \texttt{FindFirst} or \texttt{FindBest} over a compound neighborhood $\mathcal{N}^{\circ}$.
+Given a solution $s \in XS$, a neighborhood $\mathcal{N}$ and its associated *move set* $\mathcal{M}=\{m_1, m_2, m_3, ...\}$ such that $\mathcal{N}=\{m_1(s), m_2(s), m_3(s), ...\}$, the *Multi Improvement* (MI) heuristic is an implementation of the primitive `FindFirst` or `FindBest` over a compound neighborhood $\mathcal{N}^{\circ}$.
 
 The compound neighborhood $\mathcal{N}^{\circ}$ is associated to a compound move set $\mathcal{M}^{\circ} = \{m^\circ | m^\circ = \bigcirc_{ m \in \mathcal{X} }  m, \forall \mathcal{X} \in^P \mathcal{M}^{\star} \}$ that be seen as a set of *all move compositions* for $\mathcal{M}^{\star}$, which is *a subset of the powerset* $2^\mathcal{M}$ only containing *independent moves* for $s$.
 Note that operator $\in^{P}$ takes a set of the powerset and also performs a permutation, transforming the selected set into a sequence.
