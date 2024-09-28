@@ -377,28 +377,29 @@ In fact, two subgroups independently proposed the same technique (see Souza 2010
 ## MultiImprovement: the Idea
 
 
-Given a solution $s \in XS$, a neighborhood $\mathcal{N}$ and the *move set* $\mathcal{M}=\{m_1, m_2, ...\}$ such that $\mathcal{N}=\{m_1(s), m_2(s), ...\}$, the *Multi Improvement* (MI) heuristic is an implementation of the primitive \texttt{FindFirst} or \texttt{FindBest} over compound neighborhood $\mathcal{M}^{\star}$.
+Given a solution $s \in XS$, a neighborhood $\mathcal{N}$ and its associated *move set* $\mathcal{M}=\{m_1, m_2, m_3, ...\}$ such that $\mathcal{N}=\{m_1(s), m_2(s), m_3(s), ...\}$, the *Multi Improvement* (MI) heuristic is an implementation of the primitive \texttt{FindFirst} or \texttt{FindBest} over a compound neighborhood $\mathcal{N}^{\circ}$.
 
-The compound neighborhood $\mathcal{M}^{\star} = 2^\mathcal{M}$ can be seen as a set of all move compositions for $\mathcal{M}$, but finding a "best" compound move can only be done exactly (and it's even NP-hard for some neighborhoods!).
+The compound neighborhood $\mathcal{N}^{\circ}$ is associated to a compound move set $\mathcal{M}^{\circ} = \{m^\circ | m^\circ = \bigcirc_{ m \in \mathcal{X} }  m, \forall \mathcal{X} \in^P \mathcal{M}^{\star} \}$ that be seen as a set of *all move compositions* for $\mathcal{M}^{\star}$, which is *a subset of the powerset* $2^\mathcal{M}$ only containing *independent moves* for $s$.
+Note that operator $\in^{P}$ takes a set of the powerset and also performs a permutation, transforming the selected set into a sequence.
+
+Finding a "best" compound move can only be done exactly (and it's even NP-hard for some neighborhoods!).
 So finding a "first" solution can be feasible on practice, by employing some "greedy" strategy.
-
-Using CPU-GPU hybrid architecture can help deciding how such "FindFirst" operation can work efficiently, by organizing GPU blocks and shared memory in a smart way.
+In this sense, using CPU-GPU hybrid architecture can help deciding how such "FindFirst" operation can work efficiently, by organizing GPU blocks and shared memory in a smart way.
 
 ## Some formulation
 
-Given $s \in XS$, a neighborhood $\mathcal{N}$ and the *move set* $\mathcal{M}=\{m_1, m_2, ...\}$ such that $\mathcal{N}=\{m_1(s), m_2(s), ...\}$, we can formulate this problem as the following *maximization* problem:
+Given $s \in XS$, a neighborhood $\mathcal{N}$ and its *move set* $\mathcal{M}$, we can formulate this problem as the following *maximization* problem:
 
-$\max \bar{m}^{a}(s)$
+$\max \bar{m}^\circ(s)$
 
-$\mathcal{M}^a \in^{P} \mathcal{M}^{\star} = 2^\mathcal{M}$
+$\mathcal{X} \in^{P} \mathcal{M}^{\star} \subseteq 2^\mathcal{M}$
 
-$m^{a} = \bigcirc_{m \in \mathcal{M}^a} m$
+$m^\circ = \bigcirc_{m \in \mathcal{X}} m$
 
 Move Independence:
 
-$\bar{m}^{a}(s) = \sum_{m \in \mathcal{M}^a} \bar{m}(s)$
+$\bar{m}^\circ(s) = \sum_{m \in \mathcal{X}} \bar{m}(s)$
 
-Note that operator $\in^{P}$ takes a set of the powerset and also performs a permutation, transforming the selected set into a sequence.
 
 ## Exploring the Multi Improvement technique
 
