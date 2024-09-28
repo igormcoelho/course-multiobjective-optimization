@@ -88,19 +88,6 @@ Given a move $m$ and function $f$, we can compute the *move cost*  $\bar{m}^f$ (
    * this is an important property for newer neighborhood strategies in literature!
 
 
-## Moves: Basic Primitives
-
-Given a move $m$, a solution $s \in XS$ and its evaluation $e=f(s) \in XE$, we define three basic move primitives: `CanApply`,  `Apply` and `Cost`.
-
-- the `CanApply` returns *true* only if $m(s) \in XS$, i.e., if the generated neighbor is a *valid solution* in $XS$ space
-   * this can be useful when moves are clearly defined, such as changing a bit $i$ in a knapsack problem, but not all moves lead to valid solutions, for example, if knapsack capacity would be exceeded after move and that is not allowed in $XS$
-- the `Apply` primitive returns pair $<m(s), m'>$, where $m'$ is an *undo move*, such that, $s=m'(m(s))$
-   * only defined if `CanApply` is *true*
-- the `Cost` primitive returns evaluation difference value $e_{diff} = f(m(s)) - f(s)$
-   * only defined if `CanApply` is *true*
-
-A fourth non-basic primitive typically used is the `ApplyUpdate`, that returns both the *solution neighbor* and its *evaluation* in a pair $\left<m(s), f(m(s))\right>$.
-
 ## Example for the Traveling Salesman Problem (euclidean)
 
 Let's think of a neighborhood structure for the TSP.
@@ -113,16 +100,17 @@ What is a move? How much does it cost?
 
 ## Neighborhood Exploration: Basic Primitives
 
-Given a neighborhood $\mathcal{N}$ and solution $s \in XS$, we define two basic neighborhood exploration primitives: `RandomMove` and `AllMoves`.
+Given a solution $s \in XS$, a neighborhood $\mathcal{N}$ and its associated *move set* $\mathcal{M}=\{m_1, m_2, m_3, ...\}$ such that $\mathcal{N}=\{m_1(s), m_2(s), m_3(s), ...\}$, we define two basic neighborhood exploration primitives: `RandomMove` and `AllMoves`.
 
-- the `RandomMove` returns a *random move* from neighborhood $\mathcal{N}$
-- the `AllMoves` returns sequence $(m_1, m_2, ...)$ from neighborhood $\mathcal{N}$ 
+- the `RandomMove` returns a *random move* $\{m\}$ from move set $\mathcal{M}$
+- the `AllMoves` returns a sequence $\mathcal{M}^P=(m_1, m_2, ...)$ of move set $\mathcal{M}$ 
 
 Typically, two complementary primitives are built on top of `AllMoves`: `FirstMove` and `NextMove`.
 
-- `FirstMove` returns $m_1$, where $m_1$ is the first move from `AllMoves`
-- `NextMove` returns $m_{i+1}$, where $m_i$ is a move from `AllMoves`
+- $FirstMove(\mathcal{N},s)$ returns $\{m_1\}$, where $m_1$ is the first move from $\mathcal{M}^P$
+- $NextMove(\mathcal{N},s, m_i)$ returns $\{m_{i+1}\}$, where $m_i$ is a move from $\mathcal{M}^P$
 
+Note that returned moves may not exist, so one must check it! (typical *optional* behavior...)
 
 ## Neighborhood Exploration: Find Primitives
 
@@ -194,13 +182,6 @@ It can be implemented in the following way:
    \State \textbf{if} $e^* < 0$ \textbf{then} \textbf{return} $\{m^*\}$ \textbf{else} \textbf{return} $\{\}$
 \EndProcedure
 \end{algorithmic}
-
-## Neighborhood Exploration: FindNext Primitive (extra)
-
-Although not commonly used, one can define a `FindNext` primitive:
-
-- the `FindNext` tries to find *the next* $s_i \in \mathcal{N}(s) = \{s_j, ..., s_i, ...\}$ that *improves* current solution $s$
-   * assuming *minimization*, if such $s_i \in \mathcal{N}(s)$ exists, then $i$ is the *smallest value* such that $f(s_i) < f(s)$ and $i>j$
 
 # Local Search and Refinement Heuristics
 
@@ -377,7 +358,7 @@ In fact, two subgroups independently proposed the same technique (see Souza 2010
 ## MultiImprovement: the Idea
 
 
-Given a solution $s \in XS$, a neighborhood $\mathcal{N}$ and its associated *move set* $\mathcal{M}=\{m_1, m_2, m_3, ...\}$ such that $\mathcal{N}=\{m_1(s), m_2(s), m_3(s), ...\}$, the *Multi Improvement* (MI) heuristic is an implementation of the primitive `FindFirst` or `FindBest` over a compound neighborhood $\mathcal{N}^{\circ}$.
+Given a solution $s \in XS$, a neighborhood $\mathcal{N}$ and its associated *move set* $\mathcal{M}$, the *Multi Improvement* (MI) heuristic is an implementation of the primitive `FindFirst` or `FindBest` over a compound neighborhood $\mathcal{N}^{\circ}$.
 
 The compound neighborhood $\mathcal{N}^{\circ}$ is associated to a compound move set $\mathcal{M}^{\circ} = \{m^\circ | m^\circ = \bigcirc_{ m \in \mathcal{X} }  m, \forall \mathcal{X} \in^P \mathcal{M}^{\star} \}$ that be seen as a set of *all move compositions* for $\mathcal{M}^{\star}$, which is *a subset of the powerset* $2^\mathcal{M}$ only containing *independent moves* for $s$.
 Note that operator $\in^{P}$ takes a set of the powerset and also performs a permutation, transforming the selected set into a sequence.
@@ -449,6 +430,30 @@ Please read recent articles from our research group!
 - Do you know of any optimization problem that needs to be solved in the university or your work?
 - Can exact methods solve them? Do you need heuristic methods?
 - Read the introduction material from prof Marcone (in Portuguese): http://www.decom.ufop.br/prof/marcone/Disciplinas/InteligenciaComputacional/InteligenciaComputacional.pdf
+
+# Unused Slides
+
+
+
+## Moves: Basic Primitives
+
+Given a move $m$, a solution $s \in XS$ and its evaluation $e=f(s) \in XE$, we define three basic move primitives: `CanApply`,  `Apply` and `Cost`.
+
+- the `CanApply` returns *true* only if $m(s) \in XS$, i.e., if the generated neighbor is a *valid solution* in $XS$ space
+   * this can be useful when moves are clearly defined, such as changing a bit $i$ in a knapsack problem, but not all moves lead to valid solutions, for example, if knapsack capacity would be exceeded after move and that is not allowed in $XS$
+- the `Apply` primitive returns pair $\left<m(s), m'\right>$, where $m'$ is an *undo move*, such that, $s=m'(m(s))$
+   * only defined if `CanApply` is *true*
+- the `Cost` primitive returns evaluation difference value $e_{diff} = f(m(s)) - f(s)$
+   * only defined if `CanApply` is *true*
+
+A fourth non-basic primitive typically used is the `ApplyUpdate`, that returns both the *solution neighbor* and its *evaluation* in a pair $\left<m(s), f(m(s))\right>$.
+
+## Neighborhood Exploration: FindNext Primitive (extra)
+
+Although not commonly used, one can define a `FindNext` primitive:
+
+- the `FindNext` tries to find *the next* $s_i \in \mathcal{N}(s) = \{s_j, ..., s_i, ...\}$ that *improves* current solution $s$
+   * assuming *minimization*, if such $s_i \in \mathcal{N}(s)$ exists, then $i$ is the *smallest value* such that $f(s_i) < f(s)$ and $i>j$
 
 # Agradecimentos
 
